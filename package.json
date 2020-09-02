@@ -1,0 +1,65 @@
+{
+	"name": "regex-notebook",
+	"displayName": "regex notebook",
+	"description": "Regexper Notebooks",
+	"version": "0.0.1",
+	"enableProposedApi": true,
+	"engines": {
+		"vscode": "^1.48.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onNotebook:regexp-np"
+	],
+	"main": "./out/extension/extension.js",
+	"contributes": {
+		"notebookProvider": [
+			{
+				"viewType": "regexp-np",
+				"displayName": "Regex Notebook",
+				"selector": [
+					{
+						"filenamePattern": "*.regexnb"
+					}
+				]
+			}
+		],
+		"notebookOutputRenderer": [
+			{
+				"id": "regexp-renderer",
+				"entrypoint": "./dist/renderer.js",
+				"displayName": "Regex Renderer",
+				"mimeTypes": [
+					"x-application/regex"
+				]
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"lint": "eslint src --ext ts",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile && npm run lint",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.1.3",
+		"@types/mocha": "^8.0.0",
+		"@typescript-eslint/eslint-plugin": "^3.8.0",
+		"@typescript-eslint/parser": "^3.8.0",
+		"eslint": "^7.6.0",
+		"glob": "^7.1.6",
+		"mocha": "^8.0.1",
+		"ts-loader": "^8.0.3",
+		"typescript": "^3.8.3",
+		"vscode-test": "^1.4.0",
+		"webpack": "^4.44.1",
+		"webpack-cli": "^3.3.12",
+		"snapsvg-cjs": "0.0.6",
+		"lodash": "~4.17.15",
+		"canopy": "^0.2.0"
+	}
+}
