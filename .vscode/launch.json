@@ -7,7 +7,8 @@
 	"configurations": [
 		{
 			"name": "Run Extension",
-			"type": "extensionHost",
+			"type": "pwa-extensionHost",
+			"debugWebviews": true,
 			"request": "launch",
 			"runtimeExecutable": "${execPath}",
 			"args": [

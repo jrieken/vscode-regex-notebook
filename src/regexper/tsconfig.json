@@ -7,7 +7,11 @@
 		"sourceMap": true,
 		"lib": [
 			"ES2019",
-			"dom"
+			"DOM",
 		]
 	},
+	"include": [
+		"*.js",
+		"*.d.ts"
+	]
 }

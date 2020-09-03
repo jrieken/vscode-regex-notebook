@@ -11,19 +11,26 @@ const contentProvider = new class implements vscode.NotebookContentProvider {
 		const actual = openContext.backupId ? vscode.Uri.parse(openContext.backupId) : uri;
 		const data = Buffer.from(await vscode.workspace.fs.readFile(actual)).toString();
 
-		const cells: vscode.NotebookCellData[] = data.split('\n').map(line => {
+		let raw: { cellKind: number; source: string }[];
+		try {
+			raw = JSON.parse(data);
+		} catch {
+			raw = [];
+		}
+
+		const cells: vscode.NotebookCellData[] = raw.map(cell => {
 			return {
-				cellKind: vscode.CellKind.Code,
-				source: line,
-				language: 'plaintext',
-				outputs: [{ outputKind: vscode.CellOutputKind.Rich, data: { 'x-application/regex': line } }],
-				metadata: undefined
+				cellKind: cell.cellKind,
+				source: cell.source,
+				language: cell.cellKind === vscode.CellKind.Code ? 'plaintext' : 'markdown',
+				outputs: [{ outputKind: vscode.CellOutputKind.Rich, data: { 'x-application/regex': cell.source } }],
+				metadata: undefined //TODO@jrieken mark with ?
 			};
 		});
 
 		return {
 			cells,
-			languages: [],
+			languages: ['plaintext'],
 			metadata: {}
 		};
 	}
@@ -45,8 +52,11 @@ const contentProvider = new class implements vscode.NotebookContentProvider {
 	}
 
 	async saveNotebookAs(targetResource: vscode.Uri, document: vscode.NotebookDocument, _token: vscode.CancellationToken): Promise<void> {
-		const lines = document.cells.map(cell => cell.document.getText()).join('\n');
-		const data = Buffer.from(lines);
+		const lines: { cellKind: number; source: string }[] = [];
+		for (const cell of document.cells) {
+			lines.push({ cellKind: cell.cellKind, source: cell.document.getText() });
+		}
+		const data = Buffer.from(JSON.stringify(lines, undefined, 2));
 		await vscode.workspace.fs.writeFile(targetResource, data);
 	}
 };
@@ -83,7 +93,6 @@ const kernel = new class implements vscode.NotebookKernel {
 	cancelAllCellsExecution(document: vscode.NotebookDocument): void {
 		throw new Error('Method not implemented.');
 	}
-
 };
 
 export function activate(_context: vscode.ExtensionContext) {
