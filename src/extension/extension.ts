@@ -70,11 +70,11 @@ const kernel = new class implements vscode.NotebookKernel {
 	async executeCell(document: vscode.NotebookDocument, cell: vscode.NotebookCell): Promise<void> {
 		const edit = new vscode.WorkspaceEdit();
 		// TODO@jrieken cell-index and/or replaceCellOutput(celluri, output)
-		edit.replaceCellOutput(document.uri, document.cells.indexOf(cell), [{
+		edit.replaceNotebookCellOutput(document.uri, document.cells.indexOf(cell), [{
 			outputKind: vscode.CellOutputKind.Rich,
 			data: { 'x-application/regex': cell.document.getText() }
 		}]);
-		edit.replaceCellMetadata(document.uri, document.cells.indexOf(cell), { executionOrder: this._execOrderPool++ });
+		edit.replaceNotebookCellMetadata(document.uri, document.cells.indexOf(cell), { executionOrder: this._execOrderPool++ });
 		await vscode.workspace.applyEdit(edit);
 	}
 
@@ -107,7 +107,7 @@ export function activate(_context: vscode.ExtensionContext) {
 		// onDidChangeKernels?: vscode.Event<vscode.NotebookDocument | undefined> | undefined;
 
 		provideKernels(document: vscode.NotebookDocument, token: vscode.CancellationToken): vscode.ProviderResult<vscode.NotebookKernel[]> {
-			return [kernel];	
+			return [kernel];
 		}
 	});
 
