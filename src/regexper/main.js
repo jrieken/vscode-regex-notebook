@@ -24,6 +24,7 @@ api.onDidCreateOutput(async event => {
 
 	} catch (err) {
 		console.error(err);
+		event.element.innerHTML = String(err);
 	}
 });
 
