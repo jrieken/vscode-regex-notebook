@@ -40,7 +40,7 @@ const style = document.createElement('style');
 document.head.appendChild(style);
 style.innerText = `
 svg {
-	background-color: #fff;
+	
 }
 .root text,
 .root tspan {
@@ -49,35 +49,35 @@ svg {
 .root path {
 	fill-opacity: 0;
 	stroke-width: 2px;
-	stroke: #000;
+	stroke: var(--vscode-editor-foreground);
 }
 .root circle {
-	fill: #6b6659;
+	fill: var(--vscode-list-activeSelectionBackground);
 	stroke-width: 2px;
-	stroke: #000;
+	stroke: var(--vscode-editor-foreground);
 }
 .anchor text,
 .any-character text {
-	fill: #fff;
+	fill: var(--vscode-editor-foreground);
 }
 .anchor rect,
 .any-character rect {
-	fill: #6b6659;
+	fill: var(--vscode-list-activeSelectionBackground);
 }
 .escape text,
 .charset-escape text,
 .literal text {
-	fill: #000;
+	fill: var(--vscode-editor-foreground);
 }
 .escape rect,
 .charset-escape rect {
 	fill: #bada55;
 }
 .literal rect {
-	fill: #dae9e5;
+	fill: var(--vscode-panel-background);
 }
 .charset .charset-box {
-	fill: #cbcbba;
+	fill: var(--vscode-list-activeSelectionBackground);
 }
 .subexp .subexp-label tspan,
 .charset .charset-label tspan,
@@ -98,6 +98,6 @@ svg {
 	fill-opacity: 0;
 }
 .quote {
-	fill: #908c83;
+	fill: rgba(var(--vscode-editor-foreground), 0.5);
 }
 `;
