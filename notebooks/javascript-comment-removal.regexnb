@@ -1,6 +1,14 @@
 [
   {
+    "cellKind": 1,
+    "source": "# JavaScript Comment Removal\r\n\r\nRemoves any and all comments from JavaScript.\r\n\r\nsrc: https://regexr.com/3aeb7"
+  },
+  {
     "cellKind": 2,
-    "source": "\\/\\*[\\s\\S]*?\\*\\/|\\/\\/.*"
+    "source": "/\\/\\*[\\s\\S]*?\\*\\/|\\/\\/.*/g"
+  },
+  {
+    "cellKind": 1,
+    "source": "```javascript\r\nvar sample    = 0;\r\nvar new       = 1;\r\nvar my_string = \\\"Hello World!\\\";\r\n\r\n// This is a comment!\r\n\r\nfunction do_stuff(){\r\n\talert(my_string);//another comment\r\n}\r\n\r\n/* This is\r\n * a multiline\r\n * comment!\r\n */\r\n\r\nvar something;\r\n\r\n/* programs/applications 16/*(4*2)=2 */\r\n\r\nif(sample > new){\r\n  do_stuff(/* arguments here */);\r\n}\r\n\r\n//\r\n\r\n/**/\r\n```"
   }
 ]
