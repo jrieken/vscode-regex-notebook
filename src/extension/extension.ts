@@ -94,9 +94,6 @@ const kernel = new class implements vscode.NotebookKernel {
 
 export function activate(_context: vscode.ExtensionContext) {
 
-	//
-	console.log('hello');
-
 	vscode.notebook.registerNotebookContentProvider('regexp-np', contentProvider);
 	vscode.notebook.registerNotebookKernelProvider({ viewType: 'regexp-np' }, new class implements vscode.NotebookKernelProvider {
 
