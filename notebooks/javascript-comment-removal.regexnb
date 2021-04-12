@@ -1,14 +1,1 @@
-[
-  {
-    "cellKind": 1,
-    "source": "# JavaScript Comment Removal\r\n\r\nRemoves any and all comments from JavaScript.\r\n\r\nsrc: https://regexr.com/3aeb7"
-  },
-  {
-    "cellKind": 2,
-    "source": "/\\/\\*[\\s\\S]*?\\*\\/|\\/\\/.*/g"
-  },
-  {
-    "cellKind": 1,
-    "source": "```javascript\r\nvar sample    = 0;\r\nvar new       = 1;\r\nvar my_string = \\\"Hello World!\\\";\r\n\r\n// This is a comment!\r\n\r\nfunction do_stuff(){\r\n\talert(my_string);//another comment\r\n}\r\n\r\n/* This is\r\n * a multiline\r\n * comment!\r\n */\r\n\r\nvar something;\r\n\r\n/* programs/applications 16/*(4*2)=2 */\r\n\r\nif(sample > new){\r\n  do_stuff(/* arguments here */);\r\n}\r\n\r\n//\r\n\r\n/**/\r\n```"
-  }
-]
+[{"kind":1,"source":"# JavaScript Comment Removal\n\nRemoves any and all comments from JavaScript.\n\nsrc: https://regexr.com/3aeb7","language":"markdown","outputs":[]},{"kind":2,"source":"/\\/\\*[\\s\\S]*?\\*\\/|\\/\\/.*/g","language":"plaintext","outputs":[{"outputs":[{"mime":"x-application/regex","value":"/\\/\\*[\\s\\S]*?\\*\\/|\\/\\/.*/g"}],"id":"41f83c4c-fd51-4b0a-8181-f1df124f994a"}]},{"kind":1,"source":"```javascript\nvar sample    = 0;\nvar new       = 1;\nvar my_string = \\\"Hello World!\\\";\n\n// This is a comment!\n\nfunction do_stuff(){\n\talert(my_string);//another comment\n}\n\n/* This is\n * a multiline\n * comment!\n */\n\nvar something;\n\n/* programs/applications 16/*(4*2)=2 */\n\nif(sample > new){\n  do_stuff(/* arguments here */);\n}\n\n//\n\n/**/\n```","language":"markdown","outputs":[]}]

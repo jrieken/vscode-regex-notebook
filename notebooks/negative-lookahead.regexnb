@@ -1,14 +1,1 @@
-[
-  {
-    "cellKind": 1,
-    "source": "# Negative Lookahead\r\n\r\nUse negative lookahead that matches if no substring appears in given set.\r\n\r\nsrc: https://regexr.com/39dvl"
-  },
-  {
-    "cellKind": 2,
-    "source": "/^(?:(?!ab|cd).)+$/gm"
-  },
-  {
-    "cellKind": 1,
-    "source": "This text won\\'t match because it does contain ab in it!\r\n\r\nThis text won\\'t match because it does contain cd in it!\r\n\r\n`This text matches because it doesn\\'t contain them in it!`"
-  }
-]
+[{"kind":1,"source":"# Negative Lookahead\n\nUse negative lookahead that matches if no substring appears in given set.\n\nsrc: https://regexr.com/39dvl","language":"markdown","outputs":[]},{"kind":2,"source":"/^(?:(?!ab|cd).)+$/gm","language":"plaintext","outputs":[{"outputs":[{"mime":"x-application/regex","value":"/^(?:(?!ab|cd).)+$/gm"}],"id":"7c971998-d525-4ee5-8d0c-281535ed7ea6"}]},{"kind":1,"source":"This text won\\'t match because it does contain ab in it!\n\nThis text won\\'t match because it does contain cd in it!\n\n`This text matches because it doesn\\'t contain them in it!`","language":"markdown","outputs":[]}]

@@ -61,5 +61,8 @@
 		"snapsvg-cjs": "0.0.6",
 		"lodash": "~4.17.15",
 		"canopy": "^0.2.0"
+	},
+	"dependencies": {
+		"@types/node": "^14.14.37"
 	}
 }
