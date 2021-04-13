@@ -19,7 +19,7 @@ api.onDidCreateOutput(async event => {
 
 	try {
 		const parser = new Parser(event.element, { keepContent: true });
-		await parser.parse(event.output.data[event.mimeType]);
+		await parser.parse(event.value);
 		await parser.render();
 
 	} catch (err) {

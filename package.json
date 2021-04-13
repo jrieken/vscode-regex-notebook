@@ -32,7 +32,7 @@
 				"entrypoint": "./dist/regexper.js",
 				"displayName": "Regex Renderer",
 				"mimeTypes": [
-					"x-application/regex"
+					"application/x.regexp"
 				]
 			}
 		]

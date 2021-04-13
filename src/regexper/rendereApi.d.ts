@@ -14,26 +14,13 @@ export interface VSCodeEvent<T> {
 	(listener: (e: T) => any, thisArgs?: any, disposables?: Disposable[]): Disposable;
 }
 
-export interface INotebookOutputEventParams  {
+export interface INotebookOutputEventParams {
 	element: HTMLElement;
 	outputId: string;
-	output: INotebookOutput;
-	mimeType: string;
-}
 
-/**
-* Notebook output data -- corresponds to the `CellDisplayOutput` in the VS Code types.
-*/
-export interface INotebookOutput {
-	data: { [mimeType: string]: any };
-	metadata?: INotebookCellOutputMetadata
-}
-
-export interface INotebookCellOutputMetadata {
-	/**
-	 * Additional attributes of a cell metadata.
-	 */
-	custom?: { [key: string]: any; };
+	readonly mime: string;
+	readonly value: unknown;
+	readonly metadata?: Record<string, any>;
 }
 
 export interface NotebookRendererApi<T> {

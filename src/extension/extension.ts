@@ -60,7 +60,7 @@ export function activate(context: vscode.ExtensionContext) {
 		executeHandler: executions => {
 			for (let exec of executions) {
 				exec.start();
-				const output = new vscode.NotebookCellOutputItem('x-application/regex', exec.cell.document.getText());
+				const output = new vscode.NotebookCellOutputItem('application/x.regexp', exec.cell.document.getText());
 				exec.replaceOutput(new vscode.NotebookCellOutput([output]));
 				exec.end();
 			}
