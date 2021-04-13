@@ -13,7 +13,7 @@
 			"runtimeExecutable": "${execPath}",
 			"args": [
 				"--extensionDevelopmentPath=${workspaceFolder}",
-				"${workspaceFolder}/notebooks"
+				"${workspaceFolder}/samples"
 			],
 			"outFiles": [
 				"${workspaceFolder}/out/**/*.js"

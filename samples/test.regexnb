@@ -1,0 +1,4 @@
+MD: "### Phone number\n\nSee [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions]()"
+RE: "/(?:\\d{3}|\\(\\d{3}\\))([-\\/\\.])\\d{3}\\1\\d{4}/"
+MD: "### JavaScript Comment Removal\n\nRemoves any and all comments from JavaScript, see: [https://regexr.com/3aeb7]()"
+RE: "/\\/\\*[\\s\\S]*?\\*\\/|\\/\\/.*/g"
