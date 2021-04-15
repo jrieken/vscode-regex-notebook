@@ -28,7 +28,6 @@ const serializer = new class implements vscode.NotebookSerializer {
 			);
 
 			cells.push(cell);
-
 		}
 		return new vscode.NotebookData(cells);
 	}
@@ -52,20 +51,22 @@ export function activate(context: vscode.ExtensionContext) {
 	const registration = vscode.notebook.registerNotebookSerializer('regexpnb', serializer);
 
 	// "execute" a regular expression
-	const kernel = vscode.notebook.createNotebookKernel({
+	const controller = vscode.notebook.createNotebookController({
 		id: 'regex-kernel',
 		label: 'RegexNB',
 		supportedLanguages: ['plaintext'],
 		selector: { viewType: 'regexpnb' },
-		executeHandler: executions => {
-			for (let exec of executions) {
-				exec.start();
-				const output = new vscode.NotebookCellOutputItem('application/x.regexp', exec.cell.document.getText());
-				exec.replaceOutput(new vscode.NotebookCellOutput([output]));
-				exec.end();
+		executeHandler: (executions: vscode.NotebookCellExecutionTask[]) => {
+			for (const execution of executions) {
+
+				execution.start();
+				const cellContent = execution.cell.document.getText();
+				const regexOutput = new vscode.NotebookCellOutputItem('application/x.regexp', cellContent);
+				execution.replaceOutput(new vscode.NotebookCellOutput([regexOutput]));
+				execution.end();
 			}
 		}
 	});
 
-	context.subscriptions.push(registration, kernel);
+	context.subscriptions.push(registration, controller);
 }
