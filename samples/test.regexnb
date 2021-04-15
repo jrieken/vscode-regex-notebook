@@ -1,3 +1,5 @@
+MD: "### UUIDv4"
+RE: "/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i"
 MD: "### Phone number\n\nSee [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions]()"
 RE: "/(?:\\d{3}|\\(\\d{3}\\))([-\\/\\.])\\d{3}\\1\\d{4}/"
 MD: "### JavaScript Comment Removal\n\nRemoves any and all comments from JavaScript, see: [https://regexr.com/3aeb7]()"
