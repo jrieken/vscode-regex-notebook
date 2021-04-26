@@ -3,7 +3,7 @@ import * as vscode from 'vscode';
 
 const serializer = new class implements vscode.NotebookSerializer {
 
-	dataToNotebook(data: Uint8Array): vscode.NotebookData {
+	deserializeNotebook(data: Uint8Array): vscode.NotebookData {
 		const cells: vscode.NotebookCellData[] = [];
 		const str = Buffer.from(data).toString();
 		const lines = str.split('\n');
@@ -36,7 +36,7 @@ const serializer = new class implements vscode.NotebookSerializer {
 		return new vscode.NotebookData(cells);
 	}
 
-	notebookToData(data: vscode.NotebookData): Uint8Array {
+	serializeNotebook(data: vscode.NotebookData): Uint8Array {
 		const lines: string[] = [];
 		for (const cell of data.cells) {
 			if (cell.kind === vscode.NotebookCellKind.Code) {
@@ -55,22 +55,19 @@ export function activate(context: vscode.ExtensionContext) {
 	const registration = vscode.notebook.registerNotebookSerializer('regexpnb', serializer, { transientOutputs: true });
 
 	// "execute" a regular expression
-	const controller = vscode.notebook.createNotebookController({
-		id: 'regex-kernel',
-		label: 'RegexNB',
-		supportedLanguages: ['plaintext'],
-		selector: { viewType: 'regexpnb' },
-		executeHandler: (executions: vscode.NotebookCellExecutionTask[]) => {
-			for (const execution of executions) {
+	const controller = vscode.notebook.createNotebookController('regex-kernel', 'regexpnb', 'Regex');
+	controller.supportedLanguages = ['plaintext'];
+	controller.executeHandler = (cells: vscode.NotebookCell[]) => {
+		for (const cell of cells) {
 
-				execution.start();
-				const cellContent = execution.cell.document.getText();
-				const regexOutput = new vscode.NotebookCellOutputItem('application/x.regexp', cellContent);
-				execution.replaceOutput(new vscode.NotebookCellOutput([regexOutput]));
-				execution.end();
-			}
+			const execution = controller.createNotebookCellExecutionTask(cell);
+			execution.start();
+			const cellContent = execution.cell.document.getText();
+			const regexOutput = new vscode.NotebookCellOutputItem('application/x.regexp', cellContent);
+			execution.replaceOutput(new vscode.NotebookCellOutput([regexOutput]));
+			execution.end();
 		}
-	});
+	};
 
 	context.subscriptions.push(registration, controller);
 }
