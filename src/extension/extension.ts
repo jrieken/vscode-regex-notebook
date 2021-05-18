@@ -13,7 +13,7 @@ const serializer = new class implements vscode.NotebookSerializer {
 			if (line.startsWith('RE: ')) {
 				kind = vscode.NotebookCellKind.Code;
 			} else if (line.startsWith('MD: ')) {
-				kind = vscode.NotebookCellKind.Markdown;
+				kind = vscode.NotebookCellKind.Markup;
 			}
 
 			if (!kind) {
@@ -28,7 +28,7 @@ const serializer = new class implements vscode.NotebookSerializer {
 			);
 
 			if (cell.kind === vscode.NotebookCellKind.Code) {
-				cell.outputs = [new vscode.NotebookCellOutput([new vscode.NotebookCellOutputItem('application/x.regexp', cell.source)])];
+				cell.outputs = [new vscode.NotebookCellOutput([new vscode.NotebookCellOutputItem('application/x.regexp', cell.value)])];
 			}
 
 			cells.push(cell);
@@ -40,9 +40,9 @@ const serializer = new class implements vscode.NotebookSerializer {
 		const lines: string[] = [];
 		for (const cell of data.cells) {
 			if (cell.kind === vscode.NotebookCellKind.Code) {
-				lines.push(`RE: ${JSON.stringify(cell.source)}`);
+				lines.push(`RE: ${JSON.stringify(cell.value)}`);
 			} else {
-				lines.push(`MD: ${JSON.stringify(cell.source)}`);
+				lines.push(`MD: ${JSON.stringify(cell.value)}`);
 			}
 		}
 		return Buffer.from(lines.join('\n'));
