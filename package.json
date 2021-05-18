@@ -15,7 +15,7 @@
 	],
 	"main": "./out/extension.js",
 	"contributes": {
-		"notebookProvider": [
+		"notebooks": [
 			{
 				"viewType": "regexpnb",
 				"displayName": "Regex Notebook",
