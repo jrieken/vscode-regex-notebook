@@ -28,7 +28,7 @@ const serializer = new class implements vscode.NotebookSerializer {
 			);
 
 			if (cell.kind === vscode.NotebookCellKind.Code) {
-				cell.outputs = [new vscode.NotebookCellOutput([new vscode.NotebookCellOutputItem('application/x.regexp', cell.value)])];
+				cell.outputs = [new vscode.NotebookCellOutput([vscode.NotebookCellOutputItem.text(cell.value, 'application/x.regexp')])];
 			}
 
 			cells.push(cell);
@@ -63,7 +63,7 @@ export function activate(context: vscode.ExtensionContext) {
 			const execution = controller.createNotebookCellExecutionTask(cell);
 			execution.start();
 			const cellContent = execution.cell.document.getText();
-			const regexOutput = new vscode.NotebookCellOutputItem('application/x.regexp', cellContent);
+			const regexOutput = vscode.NotebookCellOutputItem.text(cellContent, 'application/x.regexp');
 			execution.replaceOutput(new vscode.NotebookCellOutput([regexOutput]));
 			execution.end();
 		}

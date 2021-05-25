@@ -2,11 +2,16 @@
 
 import Parser from './parser/javascript.js';
 
-const api = acquireNotebookRendererApi('regexp-renderer');
+export function activate() {
 
-api.onDidCreateOutput(async event => {
+	/**
+	 * 	
+	 * @param {string} id 
+	 * @param {import('vscode-notebook-renderer').CellInfo} info 
+	 */
+	async function renderCell(id, info) {
 
-	event.element.innerHTML = `
+		info.element.innerHTML = `
 		<div class="messages" style="visibility: hidden;"></div>
 		<div class="progress">
 			<div>
@@ -17,17 +22,19 @@ api.onDidCreateOutput(async event => {
 			</svg>
 		</div>`;
 
-	try {
-		const parser = new Parser(event.element, { keepContent: true });
-		await parser.parse(event.value);
-		await parser.render();
+		try {
+			const parser = new Parser(info.element, { keepContent: true });
+			await parser.parse(info.text());
+			await parser.render();
 
-	} catch (err) {
-		console.error(err);
-		event.element.innerHTML = String(err);
+		} catch (err) {
+			console.error(err);
+			info.element.innerHTML = String(err);
+		}
 	}
-});
 
+	return { renderCell };
+}
 
 // append base element
 // <script type="text/html" id="svg-container-base"></script>

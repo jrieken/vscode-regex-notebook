@@ -9,9 +9,13 @@ const rendererConfig = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'regexper.js',
+    libraryTarget: 'module',
   },
   resolve: {
     extensions: ['.js', '.ts'],
+  },
+  experiments: {
+    outputModule: true,
   },
   module: {
     rules: [
