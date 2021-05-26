@@ -56,35 +56,35 @@ svg {
 .root path {
 	fill-opacity: 0;
 	stroke-width: 2px;
-	stroke: var(--vscode-editor-foreground);
+	stroke: var(--theme-foreground);
 }
 .root circle {
-	fill: var(--vscode-list-activeSelectionBackground);
+	fill: var(--theme-menu-hover-background);
 	stroke-width: 2px;
-	stroke: var(--vscode-editor-foreground);
+	stroke: var(--theme-foreground);
 }
 .anchor text,
 .any-character text {
-	fill: var(--vscode-editor-foreground);
+	fill: var(--theme-foreground);
 }
 .anchor rect,
 .any-character rect {
-	fill: var(--vscode-list-activeSelectionBackground);
+	fill: var(--theme-menu-hover-background);
 }
 .escape text,
 .charset-escape text,
 .literal text {
-	fill: var(--vscode-editor-foreground);
+	fill: var(--theme-foreground);
 }
 .escape rect,
 .charset-escape rect {
 	fill: #bada55;
 }
 .literal rect {
-	fill: var(--vscode-panel-background);
+	fill: var(--theme-button-background);
 }
 .charset .charset-box {
-	fill: var(--vscode-list-activeSelectionBackground);
+	fill: var(--theme-menu-hover-background);
 }
 .subexp .subexp-label tspan,
 .charset .charset-label tspan,
@@ -105,6 +105,6 @@ svg {
 	fill-opacity: 0;
 }
 .quote {
-	fill: rgba(var(--vscode-editor-foreground), 0.5);
+	fill: rgba(var(--theme-foreground), 0.5);
 }
 `;

@@ -26,7 +26,7 @@
 				]
 			}
 		],
-		"notebookOutputRenderer": [
+		"notebookRenderer": [
 			{
 				"id": "regexp-renderer",
 				"entrypoint": "./dist/regexper.js",
