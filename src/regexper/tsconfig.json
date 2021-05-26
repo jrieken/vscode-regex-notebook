@@ -7,11 +7,14 @@
 		"sourceMap": true,
 		"lib": [
 			"ES2019",
-			"DOM",
+			"DOM"
 		]
 	},
 	"include": [
 		"*.js",
 		"*.d.ts"
+	],
+	"exclude": [
+		"../../node_modules",
 	]
 }
