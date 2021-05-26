@@ -59,12 +59,12 @@ export function activate(context: vscode.ExtensionContext) {
 	controller.supportedLanguages = ['plaintext'];
 	controller.executeHandler = (cells: vscode.NotebookCell[]) => {
 		for (const cell of cells) {
-
 			const execution = controller.createNotebookCellExecutionTask(cell);
 			execution.start();
 			const cellContent = execution.cell.document.getText();
-			const regexOutput = vscode.NotebookCellOutputItem.text(cellContent, 'application/x.regexp');
-			execution.replaceOutput(new vscode.NotebookCellOutput([regexOutput]));
+			const regexItem = vscode.NotebookCellOutputItem.text(cellContent, 'application/x.regexp');
+			const regexOutput = new vscode.NotebookCellOutput([regexItem]);
+			execution.replaceOutput(regexOutput);
 			execution.end();
 		}
 	};
