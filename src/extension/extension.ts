@@ -52,14 +52,14 @@ const serializer = new class implements vscode.NotebookSerializer {
 export function activate(context: vscode.ExtensionContext) {
 
 	// make notebook data from bytes and vice versa
-	const registration = vscode.notebook.registerNotebookSerializer('regexpnb', serializer, { transientOutputs: true });
+	const registration = vscode.notebooks.registerNotebookSerializer('regexpnb', serializer, { transientOutputs: true });
 
 	// "execute" a regular expression
-	const controller = vscode.notebook.createNotebookController('regex-kernel', 'regexpnb', 'Regex');
+	const controller = vscode.notebooks.createNotebookController('regex-kernel', 'regexpnb', 'Regex');
 	controller.supportedLanguages = ['plaintext'];
 	controller.executeHandler = (cells: vscode.NotebookCell[]) => {
 		for (const cell of cells) {
-			const execution = controller.createNotebookCellExecutionTask(cell);
+			const execution = controller.createNotebookCellExecution(cell);
 			execution.start();
 			const cellContent = execution.cell.document.getText();
 			const regexItem = vscode.NotebookCellOutputItem.text(cellContent, 'application/x.regexp');
