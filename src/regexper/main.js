@@ -25,6 +25,10 @@ export function activate() {
 		try {
 			const parser = new Parser(info.element, { keepContent: true });
 			await parser.parse(info.text());
+
+			// unset flags, rendered in status bar
+			parser.parsed.flags = [];
+
 			await parser.render();
 
 		} catch (err) {
