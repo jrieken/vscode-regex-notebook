@@ -4,6 +4,7 @@
 		"target": "es6",
 		"outDir": "../../out",
 		"lib": [
+			"DOM",
 			"es6"
 		],
 		"sourceMap": true,
