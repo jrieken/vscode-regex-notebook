@@ -13,7 +13,8 @@
 			"runtimeExecutable": "${execPath}",
 			"args": [
 				"--extensionDevelopmentPath=${workspaceFolder}",
-				"${workspaceFolder}/samples"
+				"${workspaceFolder}/samples",
+				"${workspaceFolder}/samples/test.regexnb"
 			],
 			"outFiles": [
 				"${workspaceFolder}/out/**/*.js"
