@@ -1,0 +1,3 @@
+[submodule "regexper-static"]
+	path = regexper-static
+	url = https://gitlab.com/javallone/regexper-static.git
