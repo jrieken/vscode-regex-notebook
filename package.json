@@ -14,10 +14,16 @@
 		"onNotebook:regexpnb"
 	],
 	"main": "./out/extension.js",
+	"capabilities": {
+		"untrustedWorkspaces": {
+			"supported": true
+		},
+		"virtualWorkspaces": true
+	},
 	"contributes": {
 		"notebooks": [
 			{
-				"viewType": "regexpnb",
+				"type": "regexpnb",
 				"displayName": "Regex Notebook",
 				"selector": [
 					{
