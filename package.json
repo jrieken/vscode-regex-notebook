@@ -1,13 +1,14 @@
 {
 	"name": "regex-notebook",
-	"displayName": "regex notebook",
-	"description": "Regexper Notebooks",
-	"version": "0.0.1",
-	"enableProposedApi": true,
+	"displayName": "Regexper notebooks",
+	"description": "A notebook that uses Regexper to render regular expressions.",
+	"version": "0.0.2",
 	"engines": {
-		"vscode": "^1.48.0"
+		"vscode": "^1.57.0"
 	},
 	"categories": [
+		"Notebooks",
+		"Visualization",
 		"Other"
 	],
 	"activationEvents": [
