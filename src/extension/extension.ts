@@ -3,7 +3,7 @@ import * as vscode from 'vscode';
 export function activate(context: vscode.ExtensionContext) {
 
 	// make notebook data from bytes and vice versa
-	context.subscriptions.push(vscode.notebooks.registerNotebookSerializer('regexpnb', new class implements vscode.NotebookSerializer {
+	context.subscriptions.push(vscode.workspace.registerNotebookSerializer('regexpnb', new class implements vscode.NotebookSerializer {
 
 		deserializeNotebook(data: Uint8Array): vscode.NotebookData {
 			const cells: vscode.NotebookCellData[] = [];
@@ -63,7 +63,7 @@ export function activate(context: vscode.ExtensionContext) {
 			const regexItem = vscode.NotebookCellOutputItem.text(cellContent, 'application/x.regexp');
 			const regexOutput = new vscode.NotebookCellOutput([regexItem]);
 			execution.replaceOutput(regexOutput);
-			execution.end();
+			execution.end(undefined);
 		}
 	};
 	context.subscriptions.push(controller);

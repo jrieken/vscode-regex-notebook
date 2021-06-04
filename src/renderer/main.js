@@ -1,17 +1,18 @@
 //@ts-check
 
-import Parser from './parser/javascript.js';
 
-export function activate() {
+import Parser from './regexper-static/src/js/parser/javascript.js';
+
+export const activate = () => {
 
 	/**
-	 * 	
-	 * @param {string} id 
-	 * @param {import('vscode-notebook-renderer').CellInfo} info 
+	 * 
+	 * @param {import('vscode-notebook-renderer').OutputItem} item 
+	 * @param {HTMLElement} element 
 	 */
-	async function renderCell(id, info) {
+	async function renderOutputItem(item, element) {
 
-		info.element.innerHTML = `
+		element.innerHTML = `
 		<div class="messages" style="visibility: hidden;"></div>
 		<div class="progress">
 			<div>
@@ -23,8 +24,8 @@ export function activate() {
 		</div>`;
 
 		try {
-			const parser = new Parser(info.element, { keepContent: true });
-			await parser.parse(info.text());
+			const parser = new Parser(element, { keepContent: true });
+			await parser.parse(item.text());
 
 			// unset flags, rendered in status bar
 			parser.parsed.flags = [];
@@ -33,12 +34,12 @@ export function activate() {
 
 		} catch (err) {
 			console.error(err);
-			info.element.innerHTML = String(err);
+			element.innerText = String(err);
 		}
 	}
 
-	return { renderCell };
-}
+	return { renderOutputItem };
+};
 
 // append base element
 // <script type="text/html" id="svg-container-base"></script>

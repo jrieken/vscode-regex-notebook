@@ -13,7 +13,7 @@
 	"activationEvents": [
 		"onNotebook:regexpnb"
 	],
-	"main": "./out/extension.js",
+	"main": "./dist/extension.js",
 	"capabilities": {
 		"untrustedWorkspaces": {
 			"supported": true
@@ -35,7 +35,7 @@
 		"notebookRenderer": [
 			{
 				"id": "regexp-renderer",
-				"entrypoint": "./dist/regexper.js",
+				"entrypoint": "./dist/regexper-renderer.js",
 				"displayName": "Regex Renderer",
 				"mimeTypes": [
 					"application/x.regexp"
@@ -53,24 +53,12 @@
 	},
 	"devDependencies": {
 		"@types/glob": "^7.1.3",
-		"@types/mocha": "^8.0.0",
 		"@types/node": "14.14.37",
-		"@types/vscode-notebook-renderer": "^1.57.2",
+		"@types/vscode-notebook-renderer": "^1.57.8",
 		"@typescript-eslint/eslint-plugin": "^3.8.0",
 		"@typescript-eslint/parser": "^3.8.0",
-		"canopy": "^0.2.0",
+		"esbuild": "^0.12.6",
 		"eslint": "^7.6.0",
-		"glob": "^7.1.6",
-		"lodash": "^4.17.21",
-		"mocha": "^8.0.1",
-		"snapsvg-cjs": "0.0.6",
-		"ts-loader": "^8.0.3",
-		"typescript": "^3.8.3",
-		"vscode-test": "^1.4.0",
-		"webpack": "^5.37.1",
-		"webpack-cli": "^4.7.0"
-	},
-	"dependencies": {
-		"@types/node": "^14.14.37"
+		"typescript": "^4.3.2"
 	}
 }
