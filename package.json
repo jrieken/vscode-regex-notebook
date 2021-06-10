@@ -2,6 +2,7 @@
 	"name": "regex-notebook",
 	"displayName": "Regexper notebooks",
 	"description": "A notebook that uses Regexper to render regular expressions.",
+	"publisher": "jrieken",
 	"version": "0.0.2",
 	"engines": {
 		"vscode": "^1.57.0"
