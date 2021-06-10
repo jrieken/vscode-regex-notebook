@@ -60,6 +60,25 @@ export function activate(context: vscode.ExtensionContext) {
 			const execution = controller.createNotebookCellExecution(cell);
 			execution.start();
 			const cellContent = execution.cell.document.getText();
+
+			try {
+				// "validation" by parsing
+				const match = /\/(.*)\/(.*)/.exec(cellContent);
+				if (match) {
+					new RegExp(match[1], match[2]);
+				} else {
+					new RegExp(cellContent);
+				}
+			} catch (err) {
+				// show validation error and continue with next cell
+				const errorItem = vscode.NotebookCellOutputItem.error(err as Error);
+				const regexOutput = new vscode.NotebookCellOutput([errorItem]);
+				execution.replaceOutput(regexOutput);
+				execution.end(false);
+
+				continue;
+			}
+
 			const regexItem = vscode.NotebookCellOutputItem.text(cellContent, 'application/x.regexp');
 			const regexOutput = new vscode.NotebookCellOutput([regexItem]);
 			execution.replaceOutput(regexOutput);
