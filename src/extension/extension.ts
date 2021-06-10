@@ -73,26 +73,26 @@ export function activate(context: vscode.ExtensionContext) {
 
 		provideCellStatusBarItems(cell: vscode.NotebookCell): vscode.ProviderResult<vscode.NotebookCellStatusBarItem[]> {
 			const cellContent = cell.document.getText();
-			let flags: string[] | undefined;
+			const flags = new Set<string>();
 			try {
 				const idx = cellContent.lastIndexOf('/');
 				if (idx > 0 && idx < cellContent.length) {
-					flags = cellContent.substring(idx + 1).split('').map(f => {
+					cellContent.substring(idx + 1).split('').map(f => {
 						switch (f) {
-							case 'g': return 'global';
-							case 'i': return 'ignoreCase';
-							case 'm': return 'multiline';
-							case 'u': return 'unicode';
-							case 'y': return 'sticky';
+							case 'g': return flags.add('global');
+							case 'i': return flags.add('ignoreCase');
+							case 'm': return flags.add('multiline');
+							case 'u': return flags.add('unicode');
+							case 'y': return flags.add('sticky');
 						}
 						return '';
 					}).sort().filter(s => !!s);
 				}
 			} catch { }
 
-			if (flags && flags.length > 0) {
+			if (flags.size > 0) {
 				return [new vscode.NotebookCellStatusBarItem(
-					'Flags: ' + flags.join(', '),
+					'Flags: ' + Array.from(flags).join(', '),
 					vscode.NotebookCellStatusBarAlignment.Right
 				)];
 			}
