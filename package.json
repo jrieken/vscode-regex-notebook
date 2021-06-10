@@ -2,6 +2,9 @@
 	"name": "regex-notebook",
 	"displayName": "Regexper notebooks",
 	"description": "A notebook that uses Regexper to render regular expressions.",
+	"repository": {
+		"url": "https://github.com/jrieken/vscode-regex-notebook"
+	},
 	"publisher": "jrieken",
 	"version": "0.0.2",
 	"engines": {
