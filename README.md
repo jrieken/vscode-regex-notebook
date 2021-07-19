@@ -11,6 +11,7 @@ This samples makes use of the following APIs/concepts
 
 ### Running out of source
 
+* run `git submodule init` and `git submodule update`
 * run `npm install` in the terminal
 * also run `npm run compile`
 * select `F5` to debug
