@@ -19,6 +19,7 @@
 		"onNotebook:regexpnb"
 	],
 	"main": "./dist/extension.js",
+	"browser": "./dist/extension.js",
 	"capabilities": {
 		"untrustedWorkspaces": {
 			"supported": true
