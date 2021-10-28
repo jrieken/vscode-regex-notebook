@@ -12,31 +12,28 @@ export function activate(context: vscode.ExtensionContext) {
 			const cells: vscode.NotebookCellData[] = [];
 			const str = this._decoder.decode(data);
 			const lines = str.split('\n');
+
 			for (const line of lines) {
-
-				let kind: vscode.NotebookCellKind | undefined;
-				if (line.startsWith('RE: ')) {
-					kind = vscode.NotebookCellKind.Code;
-				} else if (line.startsWith('MD: ')) {
-					kind = vscode.NotebookCellKind.Markup;
-				}
-
-				if (!kind) {
-					// invalid line -> ignore...
+				let cell: vscode.NotebookCellData | undefined;
+				let value: string;
+				try {
+					value = JSON.parse(line.substring(4));
+				} catch {
 					continue;
 				}
-
-				const cell = new vscode.NotebookCellData(
-					kind,
-					JSON.parse(line.substring(4)),
-					'plaintext'
-				);
-
-				if (cell.kind === vscode.NotebookCellKind.Code) {
+				if (line.startsWith('RE: ')) {
+					// regex-cell
+					cell = new vscode.NotebookCellData(vscode.NotebookCellKind.Code, value, 'plaintext');
 					cell.outputs = [new vscode.NotebookCellOutput([vscode.NotebookCellOutputItem.text(cell.value, 'application/x.regexp')])];
+
+				} else if (line.startsWith('MD: ')) {
+					// markdown-cell
+					cell = new vscode.NotebookCellData(vscode.NotebookCellKind.Markup, value, 'markdown');
 				}
 
-				cells.push(cell);
+				if (cell) {
+					cells.push(cell);
+				}
 			}
 			return new vscode.NotebookData(cells);
 		}
