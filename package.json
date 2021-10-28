@@ -6,7 +6,7 @@
 		"url": "https://github.com/jrieken/vscode-regex-notebook"
 	},
 	"publisher": "jrieken",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"engines": {
 		"vscode": "^1.57.0"
 	},
