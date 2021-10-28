@@ -5,9 +5,12 @@ export function activate(context: vscode.ExtensionContext) {
 	// make notebook data from bytes and vice versa
 	context.subscriptions.push(vscode.workspace.registerNotebookSerializer('regexpnb', new class implements vscode.NotebookSerializer {
 
+		private readonly _decoder = new TextDecoder();
+		private readonly _encoder = new TextEncoder();
+
 		deserializeNotebook(data: Uint8Array): vscode.NotebookData {
 			const cells: vscode.NotebookCellData[] = [];
-			const str = Buffer.from(data).toString();
+			const str = this._decoder.decode(data);
 			const lines = str.split('\n');
 			for (const line of lines) {
 
@@ -25,7 +28,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 				const cell = new vscode.NotebookCellData(
 					kind,
-					JSON.parse(line.substr(4)),
+					JSON.parse(line.substring(4)),
 					'plaintext'
 				);
 
@@ -47,7 +50,7 @@ export function activate(context: vscode.ExtensionContext) {
 					lines.push(`MD: ${JSON.stringify(cell.value)}`);
 				}
 			}
-			return Buffer.from(lines.join('\n'));
+			return this._encoder.encode(lines.join('\n'));
 		}
 	}, { transientOutputs: true }));
 
