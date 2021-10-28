@@ -4,3 +4,5 @@ MD: "### Phone number\n\nSee [https://developer.mozilla.org/en-US/docs/Web/JavaS
 RE: "/(?:\\d{3}|\\(\\d{3}\\))([-\\/\\.])\\d{3}\\1\\d{4}/"
 MD: "### JavaScript Comment Removal\n\nRemoves any and all comments from JavaScript, see: [https://regexr.com/3aeb7]()"
 RE: "/\\/\\*[\\s\\S]*?\\*\\/|\\/\\/.*/g"
+MD: "### E-Mail Validation\n\nSee [https://stackoverflow.com/a/46181]()"
+RE: "/^(([^<>()[\\]\\\\.,;:\\s@\"]+(\\.[^<>()[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$/"
