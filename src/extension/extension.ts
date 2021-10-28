@@ -118,4 +118,13 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	}));
 
+	// new notebook command
+
+	context.subscriptions.push(vscode.commands.registerCommand('regexnb.new', async function () {
+		const newNotebook = await vscode.workspace.openNotebookDocument('regexpnb', new vscode.NotebookData(
+			[new vscode.NotebookCellData(vscode.NotebookCellKind.Code, '/Hello{1,7} Notebooks/', 'plaintext')]
+		));
+
+		await vscode.commands.executeCommand('vscode.open', newNotebook.uri);
+	}));
 }

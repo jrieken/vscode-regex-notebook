@@ -31,6 +31,7 @@
 			{
 				"type": "regexpnb",
 				"displayName": "Regex Notebook",
+				"priority": "default",
 				"selector": [
 					{
 						"filenamePattern": "*.regexnb"
@@ -47,7 +48,21 @@
 					"application/x.regexp"
 				]
 			}
-		]
+		],
+		"commands": [
+			{
+				"title": "New Regex Notebook",
+				"shortTitle": "Regex Notebook",
+				"command": "regexnb.new"
+			}
+		],
+		"menus": {
+			"file/newFile": [
+				{
+					"command": "regexnb.new"
+				}
+			]
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
